@@ -1,0 +1,79 @@
+.watch__main {
+  font-family: "Roboto", sans-serif;
+}
+.screen__container {
+  width: 100%;
+  background-color: black;
+}
+.screen {
+  width: 100%;
+  height: 500px;
+}
+
+.watch-info {
+  width: 100%;
+  color: white;
+  display: flex;
+  padding: 30px 40px;
+}
+
+.watch_thumb {
+  width: 220px;
+  border-radius: 10px;
+}
+
+.watch__info--left {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.watch-info span {
+  color: rgba(255, 255, 255, 0.445);
+}
+
+.watch-info h2 {
+  line-height: 22px;
+}
+
+.watch__movie--title {
+  color: #ff7bbf;
+  font-size: 25px;
+}
+
+.watch__movie--sub {
+  color: #ff7bbfa8;
+}
+
+.watch__episodes {
+  width: 100%;
+  background-color: #212226;
+  margin-top: 0;
+  padding: 20px 40px;
+  border-bottom: 1px solid #964ec2;
+}
+
+.eps__title {
+  color: #ff7bbf;
+  margin-bottom: 20px;
+}
+
+.eps__btn--container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.eps__btn {
+  padding: 6px 10px;
+  border: #ff7bbf solid 2px;
+  color: #964ec2;
+  border-radius: 7px;
+  cursor: pointer;
+  background-color: #28292e;
+}
+
+.eps__btn:hover {
+  background-color: #4a4c55;
+}

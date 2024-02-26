@@ -4,11 +4,18 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Home.css";
-import { useEffect, useState } from "react";
 import { useContext } from "react";
 import ApiContext from "../API Generate/ApiContext";
+import { ToastContainer, toast } from "react-toastify";
 
 function Slider1() {
+  const notify = () => {
+    toast("Default");
+    toast.success("Thành công!", {
+      position: "top_center",
+    });
+  };
+
   const setting1 = {
     dots: true,
     infinite: true,
@@ -21,9 +28,32 @@ function Slider1() {
   const dataContext = useContext(ApiContext);
   const movie = dataContext.eachData;
 
-  if (movie != "") {
+  function addPlaylist(slug) {
+    let playlist = localStorage.getItem("playlist");
+
+    if (!playlist) {
+      playlist = [slug];
+    } else {
+      playlist = JSON.parse(playlist);
+      var found = false;
+      for (var i = 0; i < playlist.length; i++) {
+        if (playlist[i] === slug) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        playlist.push(slug);
+      }
+    }
+
+    localStorage.setItem("playlist", JSON.stringify(playlist));
+  }
+
+  if (movie.length > 0) {
     return (
       <div className="home-container">
+  
         <Slider {...setting1}>
           {/* Movie 1 */}
           {movie.map((eachMovie, index) => {
@@ -61,10 +91,22 @@ function Slider1() {
                     </div>
                   </div>
 
-                  <Link to={`/watch/${movie.slug}`} className="play-btn">
-                    <i className="fa-solid fa-play"></i>
-                    Watch now
-                  </Link>
+                  <div className="action__btn">
+                    <Link to={`/watch/${movie.slug}`} className="play-btn">
+                      <i className="fa-solid fa-play"></i>
+                      Watch now
+                    </Link>
+
+                    <button
+                      className="playlist__btn"
+                      onClick={() => {
+                        addPlaylist(movie.slug);
+                        notify();
+                      }}
+                    >
+                      Add to playlist +
+                    </button>
+                  </div>
                 </div>
               </div>
             );
@@ -92,12 +134,12 @@ function Slider2() {
     autoplay: true,
     autoplaySpeed: 4000,
     speed: 1500,
-    slidesToShow: 8,
-    slidesToScroll: 8,
+    slidesToShow: 7,
+    slidesToScroll: 7,
   };
   const dataContext = useContext(ApiContext);
   const movie = dataContext.eachData;
-  if (movie != "") {
+  if (movie.length > 0) {
     return (
       <div className="Main">
         <div className="news-box">
@@ -108,6 +150,7 @@ function Slider2() {
               return (
                 <div key={index} className="news-movie">
                   <Link to={`/watch/${movie.slug}`}>
+                    <div className="news__year">{movie.year}</div>
                     <img src={movie.thumb_url} alt="news movie" />
                     <h2>{movie.name}</h2>
                   </Link>

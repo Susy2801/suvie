@@ -42,6 +42,23 @@
   font-size: 25px;
 }
 
+.favorite__movie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.love__movie {
+  color: #de338b;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.love__movie:hover {
+  color: #f078b6;
+  position: relative;
+}
+
 .watch__movie--sub {
   color: #ff7bbfa8;
 }

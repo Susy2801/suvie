@@ -1,0 +1,55 @@
+.playlist__box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 20px 100px;
+  font-family: "Roboto";
+}
+
+.playlist__item {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.playlist__item img {
+  width: 200px;
+  height: 300px;
+  border-radius: 7px;
+}
+
+.playlist__item h1 {
+  color: white;
+  padding: 5px;
+}
+
+.remove__playlist {
+  color: pink;
+  position: absolute;
+  background-color: #313866;
+  padding: 6px;
+  border-radius: 0 0 7px 7px;
+  top: 0;
+  right: 10px;
+  transition: 400ms all ease;
+}
+
+.playlist__info {
+  position: absolute;
+  width: 200px;
+  background-color: #313866;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  transition: 400ms all ease;
+}
+
+.playlist__btn {
+}

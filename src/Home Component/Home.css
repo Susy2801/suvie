@@ -121,14 +121,21 @@
 .status {
   padding-left: 10px;
 }
+
+.action__btn {
+  display: flex;
+  justify-content: flex-start;
+  gap: 25px;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .play-btn {
-  width: 120px;
   padding: 8px;
   border-radius: 7px;
   border: #ff7bbf solid 1px;
   background-color: #313866;
   color: #ff7bbf;
-  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,10 +147,30 @@
   background-color: #1b1f38;
 }
 
+.playlist__btn {
+  padding: 8px;
+  border-radius: 7px;
+  border: #ff7bbf solid 1px;
+  background-color: #313866;
+  color: #ff7bbf;
+  font-size: 16px;
+  font-family: "Roboto";
+  cursor: pointer;
+}
+
+.playlist__btn:hover {
+  background-color: #1b1f38;
+}
+
+.playlist__btn:active {
+  background-color: #3c436c;
+}
+
 /* ======= News Movie =======*/
 .news-box {
   width: 100%;
   height: 200px;
+  position: relative;
 }
 
 .box-title {
@@ -151,6 +178,16 @@
   padding: 10px 10px;
   font-size: 20px;
   font-weight: 800px;
+}
+
+.news__year {
+  position: absolute;
+  color: #de338b;
+  padding: 6px 4px;
+  background-color: #313866;
+  border-radius: 0 0 7px 7px;
+  left: 10px;
+  z-index: 2;
 }
 
 .news-movie {
@@ -167,6 +204,7 @@
 .news-movie img {
   width: 100%;
   height: 300px;
+  filter: brightness(85%);
 }
 
 .news-movie h2 {

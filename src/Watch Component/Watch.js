@@ -12,8 +12,29 @@ function Watch() {
       .then((response) => response.json())
       .then((data) => setData(data));
   }, [id]);
+
+  function addPlaylist(slug) {
+    let playlist = localStorage.getItem("playlist");
+
+    if (!playlist) {
+      playlist = [slug];
+    } else {
+      playlist = JSON.parse(playlist);
+      var found = false;
+      for (var i = 0; i < playlist.length; i++) {
+        if (playlist[i] === slug) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        playlist.push(slug);
+      }
+    }
+
+    localStorage.setItem("playlist", JSON.stringify(playlist));
+  }
   if (Object.keys(data).length > 0) {
-    const movieLink = data.episodes[0].server_data[0].link_embed;
     const thumb = data.movie.thumb_url;
     const name = data.movie.name;
     const subName = data.movie.origin_name;
@@ -32,7 +53,7 @@ function Watch() {
             allowFullScreen
             title="Phim hay"
             className="screen"
-            src={movieLink}
+            src={link}
           ></iframe>
         </div>
         <div className="watch__episodes">
@@ -40,7 +61,6 @@ function Watch() {
           <div className="eps__btn--container">
             {eps.map((item, index) => {
               const link = item.link_embed;
-
               return (
                 <button
                   key={index}
@@ -56,7 +76,12 @@ function Watch() {
         <div className="watch-info">
           <img className="watch_thumb" src={thumb} alt="ảnh phim" />
           <div className="watch__info--left">
-            <h2 className="watch__movie--title">{name}</h2>
+            <div className="favorite__movie">
+              <h2 className="watch__movie--title">{name}</h2>
+              <div className="love__movie" onClick={() => addPlaylist(id)}>
+                <i class="fa-solid fa-heart"></i>
+              </div>
+            </div>
             <h2 className="watch__movie--sub">{subName}</h2>
             <h2 className="watch__movie--year">
               <span>Phát hành:</span> {year}

@@ -20,7 +20,7 @@ function Header() {
 
         <nav className="nav">
           <Link to="/">Trang chủ</Link>
-          <Link to="/phimmoi">Phim mới</Link>
+          <Link to="/playlist">Bộ sưu tập</Link>
         </nav>
       </div>
       <div className="search">

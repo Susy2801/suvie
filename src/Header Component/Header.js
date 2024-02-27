@@ -10,7 +10,7 @@ function Header() {
 
   function handleEnter(e) {
     if (e.key === "Enter") {
-      navigate(`search/${search}`);
+      navigate(`search/${search}`, { replace: true });
       setSearch("");
     }
   }

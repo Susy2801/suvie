@@ -18,6 +18,12 @@
   justify-content: center;
   color: #dd6ca7;
 }
+
+.loading__screen {
+  color: #dd6ca7;
+  font-family: "Roboto";
+  font-size: 20px;
+}
 /* Carousel config */
 .slick-dots {
   position: absolute;

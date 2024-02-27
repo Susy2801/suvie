@@ -42,45 +42,52 @@ function Saved() {
       setRemove("");
     }
   }, [remove]);
-
-  return (
-    <div className="playlist__box">
-      {movie.map((info, index) => {
-        var movie = info.movie;
-        return (
-          <div
-            key={index}
-            className="playlist__item"
-            onMouseEnter={() => onHover(index)}
-            onMouseLeave={() => {
-              setHeight(null);
-              setTop("-40px");
-            }}
-          >
-            <img src={movie.thumb_url} alt="poster" />
+  if (list.length > 0) {
+    return (
+      <div className="playlist__box">
+        {movie.map((info, index) => {
+          var movie = info.movie;
+          return (
             <div
-              className="remove__playlist"
-              style={{ top: height === index ? 0 : "-100px" }}
-              onClick={() => removeMovie(movie.slug, index)}
-            >
-              <i className="fa-solid fa-minus"></i>
-            </div>
-            <div
-              className="playlist__info"
-              style={{
-                height: height === index ? "120px" : 0,
+              key={index}
+              className="playlist__item"
+              onMouseEnter={() => onHover(index)}
+              onMouseLeave={() => {
+                setHeight(null);
+                setTop("-40px");
               }}
             >
-              <h1>{movie.name}</h1>
-              <Link to={`/watch/${movie.slug}`} className="playlist__btn">
-                Xem phim
-              </Link>
+              <img src={movie.thumb_url} alt="poster" />
+              <div
+                className="remove__playlist"
+                style={{ top: height === index ? 0 : "-100px" }}
+                onClick={() => removeMovie(movie.slug, index)}
+              >
+                <i className="fa-solid fa-minus"></i>
+              </div>
+              <div
+                className="playlist__info"
+                style={{
+                  height: height === index ? "120px" : 0,
+                }}
+              >
+                <h1>{movie.name}</h1>
+                <Link to={`/watch/${movie.slug}`} className="playlist__btn">
+                  Xem phim
+                </Link>
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+          );
+        })}
+      </div>
+    );
+  } else {
+    return (
+      <div className="loading__screen">
+        <div>Không có phim nào trong bộ sưu tập!</div>
+      </div>
+    );
+  }
 }
 
 export default Saved;

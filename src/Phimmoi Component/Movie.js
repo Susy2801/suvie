@@ -12,13 +12,15 @@ function Saved() {
   list = JSON.parse(list);
 
   useEffect(() => {
-    for (const slug of list) {
-      async function getMovie() {
-        var json = await fetch(`https://ophim1.com/phim/${slug}`);
-        var data = await json.json();
-        setMovie((prev) => [...prev, data]);
+    if (list) {
+      for (const slug of list) {
+        async function getMovie() {
+          var json = await fetch(`https://ophim1.com/phim/${slug}`);
+          var data = await json.json();
+          setMovie((prev) => [...prev, data]);
+        }
+        getMovie();
       }
-      getMovie();
     }
   }, []);
 

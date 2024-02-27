@@ -48,10 +48,10 @@
 }
 
 .search input {
-  width: 0px;
+  width: 300px;
   height: 29px;
   border: none;
   border-radius: 7px;
-  padding: 5px 0px;
+  padding: 5px 5px;
   transition: 0.4s ease;
 }

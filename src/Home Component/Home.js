@@ -6,16 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Home.css";
 import { useContext } from "react";
 import ApiContext from "../API Generate/ApiContext";
-import { ToastContainer, toast } from "react-toastify";
 
 function Slider1() {
-  const notify = () => {
-    toast("Default");
-    toast.success("Thành công!", {
-      position: "top_center",
-    });
-  };
-
   const setting1 = {
     dots: true,
     infinite: true,
@@ -26,7 +18,7 @@ function Slider1() {
     slidesToScroll: 1,
   };
   const dataContext = useContext(ApiContext);
-  const movie = dataContext.eachData;
+  const movie = dataContext.movieBySlug;
 
   function addPlaylist(slug) {
     let playlist = localStorage.getItem("playlist");
@@ -53,7 +45,6 @@ function Slider1() {
   if (movie.length > 0) {
     return (
       <div className="home-container">
-  
         <Slider {...setting1}>
           {/* Movie 1 */}
           {movie.map((eachMovie, index) => {
@@ -99,10 +90,7 @@ function Slider1() {
 
                     <button
                       className="playlist__btn"
-                      onClick={() => {
-                        addPlaylist(movie.slug);
-                        notify();
-                      }}
+                      onClick={() => addPlaylist(movie.slug)}
                     >
                       Add to playlist +
                     </button>
@@ -138,7 +126,7 @@ function Slider2() {
     slidesToScroll: 7,
   };
   const dataContext = useContext(ApiContext);
-  const movie = dataContext.eachData;
+  const movie = dataContext.movieBySlug;
   if (movie.length > 0) {
     return (
       <div className="Main">

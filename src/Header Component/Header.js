@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 import logo from "../logo.png";
 
 function Header() {
   const [search, setSearch] = useState("");
-  const [show, setShow] = useState("0px");
+  const navigate = useNavigate();
 
-  function openSearch() {
-    if (show === "0px") {
-      setShow("250px");
-    } else setShow("0px");
+  function handleEnter(e) {
+    if (e.key === "Enter") {
+      navigate(`search/${search}`);
+      setSearch("");
+    }
   }
 
   return (
@@ -25,16 +27,17 @@ function Header() {
       </div>
       <div className="search">
         <input
-          style={{ width: show }}
           placeholder="Tìm kiếm phim"
           value={search}
-          onBlur={() => openSearch()}
           onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={(e) => handleEnter(e)}
         />
-        <i
-          className="fa-solid fa-magnifying-glass search-icon"
-          onClick={() => openSearch()}
-        ></i>
+        <Link to={`search/${search}`}>
+          <i
+            onClick={() => setSearch("")}
+            className="fa-solid fa-magnifying-glass search-icon"
+          ></i>
+        </Link>
       </div>
     </header>
   );

@@ -42,7 +42,7 @@ function Saved() {
       setRemove("");
     }
   }, [remove]);
-  if (list.length > 0) {
+  if (list) {
     return (
       <div className="playlist__box">
         {movie.map((info, index) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -8,6 +8,14 @@ import { useContext } from "react";
 import ApiContext from "../API Generate/ApiContext";
 
 function Slider1() {
+  useEffect(() => {
+    async function homeApi() {
+      var response = await fetch(`https://ophim1.com//v1/api/home`);
+      var data = await response.json();
+      console.log(data);
+    }
+    homeApi();
+  }, []);
   const setting1 = {
     dots: true,
     infinite: true,
@@ -115,37 +123,51 @@ function Slider1() {
 }
 
 function Slider2() {
-  const setting2 = {
-    dots: true,
-    arrows: true,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    speed: 1500,
-    slidesToShow: 7,
-    slidesToScroll: 7,
-  };
+  // const setting2 = {
+  //   dots: true,
+  //   arrows: true,
+  //   infinite: true,
+  //   autoplay: true,
+  //   autoplaySpeed: 4000,
+  //   speed: 1500,
+  //   slidesToShow: 7,
+  //   slidesToScroll: 7,
+  // };
   const dataContext = useContext(ApiContext);
   const movie = dataContext.movieBySlug;
   if (movie.length > 0) {
     return (
       <div className="Main">
+        <h1 className="box-title">Phim mới cập nhật</h1>
         <div className="news-box">
-          <h1 className="box-title">Phim mới</h1>
-          <Slider {...setting2}>
-            {movie.map((eachMovie, index) => {
-              const movie = eachMovie.movie;
-              return (
-                <div key={index} className="news-movie">
-                  <Link to={`/watch/${movie.slug}`}>
-                    <div className="news__year">{movie.year}</div>
+          {/* <Slider {...setting2}> */}
+          {movie.map((eachMovie, index) => {
+            const movie = eachMovie.movie;
+            return (
+              <div key={index} className="news-movie">
+                <Link to={`/watch/${movie.slug}`}>
+                  <div className="news__movie--thumb">
                     <img src={movie.thumb_url} alt="news movie" />
-                    <h2>{movie.name}</h2>
-                  </Link>
+                  </div>
+                </Link>
+                <div className="news__movie--info">
+                  <h2 className="news__movie--name">{movie.name}</h2>
+                  <div className="news__movie--sub-info">
+                    <ul>
+                      <div className="news__year">{movie.year}</div>
+                      <li>
+                        {" "}
+                        <div className="news__year">
+                          {movie.country[0].name}
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              );
-            })}
-          </Slider>
+              </div>
+            );
+          })}
+          {/* </Slider> */}
         </div>
       </div>
     );

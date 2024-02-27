@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "./Movie.css";
 function Saved() {
   const [movie, setMovie] = useState([]);
   const [height, setHeight] = useState(null);
-  const [top, setTop] = useState("-100px");
   const [remove, setRemove] = useState("");
 
   var list = localStorage.getItem("playlist");
@@ -42,6 +40,7 @@ function Saved() {
       setRemove("");
     }
   }, [remove]);
+
   if (list && list.length > 0) {
     return (
       <div className="playlist__box">
@@ -54,7 +53,6 @@ function Saved() {
               onMouseEnter={() => onHover(index)}
               onMouseLeave={() => {
                 setHeight(null);
-                setTop("-40px");
               }}
             >
               <img src={movie.thumb_url} alt="poster" />

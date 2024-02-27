@@ -2,9 +2,10 @@
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 20px 100px;
+  padding: 20px 40px;
   font-family: "Roboto";
 }
 
@@ -12,14 +13,24 @@
   width: 200px;
   height: 300px;
   position: relative;
-  overflow: hidden;
   cursor: pointer;
+  overflow: hidden;
+  box-shadow: 2px 10px 24px -6px rgba(90, 40, 160, 0.44);
+  -webkit-box-shadow: 2px 10px 24px -6px rgba(90, 40, 160, 0.44);
+  -moz-box-shadow: 2px 10px 24px -6px rgba(90, 40, 160, 0.44);
 }
 
 .playlist__item img {
   width: 200px;
   height: 300px;
   border-radius: 7px;
+
+  transition: 400ms all ease;
+}
+
+.playlist__item img:hover {
+  transform: scale(110%);
+  filter: brightness(60%);
 }
 
 .playlist__item h1 {
@@ -47,6 +58,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 7px;
   justify-content: space-around;
   transition: 400ms all ease;
 }

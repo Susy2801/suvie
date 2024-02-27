@@ -5,10 +5,8 @@ import { Link } from "react-router-dom";
 function Search() {
   const [movie, setMovie] = useState([]);
   const [height, setHeight] = useState(null);
-  const [top, setTop] = useState("-100px");
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
-  console.log(movie);
   var onHover = (index) => {
     setHeight(index);
   };
@@ -39,7 +37,6 @@ function Search() {
                 onMouseEnter={() => onHover(index)}
                 onMouseLeave={() => {
                   setHeight(null);
-                  setTop("-40px");
                 }}
               >
                 <img

@@ -17,11 +17,12 @@ function Slider1() {
     homeApi();
   }, []);
   const setting1 = {
-    dots: true,
     infinite: true,
     autoplay: true,
+    fade: true,
     autoplaySpeed: 3000,
-    speed: 500,
+    speed: 800,
+    swipeToSlide: true,
     slidesToShow: 1,
     slidesToScroll: 1,
   };

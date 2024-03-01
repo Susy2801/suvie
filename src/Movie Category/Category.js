@@ -27,7 +27,7 @@ function Category() {
       setLoading(true);
     }
     categoryAPI();
-  }, [page]);
+  }, [page, id]);
 
   function handlePageClick(index) {
     setPage(index + 1);

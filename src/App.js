@@ -6,6 +6,7 @@ import Header from "./Header Component/Header.js";
 import HomePage from "./Home Component/Home.js";
 import WatchPage from "./Watch Component/Watch.js";
 import SearchPage from "./Search Page/Search.js";
+import CategoryPage from "./Movie Category/Category.js";
 import "./Style/Loading.css";
 import "./App.css";
 
@@ -51,6 +52,7 @@ function App() {
           <Route path="/playlist" element={<Saved />} />
           <Route path="/watch/:id" element={<WatchPage />} />
           <Route path="/search/:id" element={<SearchPage />} />
+          <Route path="/category/:id" element={<CategoryPage />} />
         </Routes>
       </MyContext.Provider>
     </div>

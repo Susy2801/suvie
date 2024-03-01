@@ -157,7 +157,6 @@ function Slider2() {
                     <ul>
                       <div className="news__year">{movie.year}</div>
                       <li>
-                        {" "}
                         <div className="news__year">
                           {movie.country[0].name}
                         </div>

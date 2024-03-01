@@ -49,7 +49,6 @@ function Header() {
             className="header__type--box"
             onMouseEnter={() => setShow(true)}
             onMouseLeave={() => setShow(false)}
-            onBlur={() => setShow(false)}
           >
             <Link className="nav_a type">Thể Loại</Link>
             <div

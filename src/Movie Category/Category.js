@@ -16,9 +16,12 @@ function Category() {
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     async function categoryAPI() {
       var response = await fetch(
-        `https://ophim1.com/v1/api/the-loai/${id}?page=${page}`
+        `https://ophim1.com/v1/api/the-loai/${id}?page=${page}`,
+        { signal: abortController.signal }
       );
       setLoading(false);
       var data = await response.json();
@@ -27,6 +30,9 @@ function Category() {
       setLoading(true);
     }
     categoryAPI();
+    return () => {
+      abortController.abort();
+    };
   }, [page, id]);
 
   function handlePageClick(index) {

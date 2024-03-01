@@ -15,22 +15,33 @@ function App() {
   const [movieBySlug, setEachData] = useState([]);
 
   useEffect(() => {
-    fetch("https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=1")
+    const abortController = new AbortController();
+
+    fetch("https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=1", {
+      signal: abortController.signal,
+    })
       .then((response) => response.json())
       .then((data) => {
         const movieList = data.items;
         setData(movieList);
       })
       .catch((error) => console.log(`Lỗi: ${error}`));
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     const fetchMovies = async () => {
       const eachMovie = await Promise.all(
         movieUpdate.map(async (movie) => {
           try {
             const slug = movie.slug;
-            const response = await fetch(`https://ophim1.com/phim/${slug}`);
+            const response = await fetch(`https://ophim1.com/phim/${slug}`, {
+              signal: abortController.signal,
+            });
             const data = await response.json();
             return data;
           } catch (error) {
@@ -42,6 +53,9 @@ function App() {
     };
 
     fetchMovies();
+    return () => {
+      abortController.abort();
+    };
   }, [movieUpdate]);
   return (
     <div className="App">

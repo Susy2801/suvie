@@ -18,14 +18,20 @@ function Header() {
   }
 
   useEffect(() => {
+    const abortController = new AbortController();
     async function getCategory() {
-      var response = await fetch("https://ophim1.com/v1/api/the-loai");
+      var response = await fetch("https://ophim1.com/v1/api/the-loai", {
+        signal: abortController.signal,
+      });
       var data = await response.json();
       console.log(data);
       var categoryData = await data.data.items;
       setCategory(categoryData);
     }
     getCategory();
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   return (

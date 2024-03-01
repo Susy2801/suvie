@@ -12,9 +12,12 @@ function Search() {
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     async function searchAPI() {
       var response = await fetch(
-        `https://ophim1.com/v1/api/tim-kiem?keyword=${id}`
+        `https://ophim1.com/v1/api/tim-kiem?keyword=${id}`,
+        { signal: abortController.signal }
       );
       setLoading(false);
       var data = await response.json();
@@ -23,6 +26,9 @@ function Search() {
     }
 
     searchAPI();
+    return () => {
+      abortController.abort();
+    };
   }, [id]);
   var isFound = movie.length !== 0;
   if (isFound) {

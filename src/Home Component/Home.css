@@ -50,7 +50,6 @@
   width: 100%;
   height: 600px;
   position: relative;
-  cursor: pointer;
 }
 
 .movie__thumb {
@@ -141,7 +140,7 @@
   padding-left: 10px;
 }
 
-.action__btn {
+.home-action__btn {
   display: flex;
   justify-content: flex-start;
   gap: 25px;
@@ -149,7 +148,7 @@
   margin-top: 20px;
 }
 
-.play-btn {
+.home__play-btn {
   padding: 8px;
   border-radius: 7px;
   border: #ff7bbf solid 1px;
@@ -162,7 +161,7 @@
   cursor: pointer;
 }
 
-.play-btn:hover {
+.home__play-btn:hover {
   background-color: #1b1f38;
 }
 

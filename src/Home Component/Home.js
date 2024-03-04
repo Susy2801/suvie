@@ -8,18 +8,9 @@ import { useContext } from "react";
 import ApiContext from "../API Generate/ApiContext";
 
 function Slider1() {
-  useEffect(() => {
-    async function homeApi() {
-      var response = await fetch(`https://ophim1.com//v1/api/home`);
-      var data = await response.json();
-      console.log(data);
-    }
-    homeApi();
-  }, []);
   const setting1 = {
     infinite: true,
     autoplay: true,
-    fade: true,
     autoplaySpeed: 3000,
     speed: 800,
     swipeToSlide: true,
@@ -91,8 +82,11 @@ function Slider1() {
                     </div>
                   </div>
 
-                  <div className="action__btn">
-                    <Link to={`/watch/${movie.slug}`} className="play-btn">
+                  <div className="home-action__btn">
+                    <Link
+                      to={`/watch/${movie.slug}`}
+                      className="home__play-btn"
+                    >
                       <i className="fa-solid fa-play"></i>
                       Watch now
                     </Link>

@@ -16,23 +16,18 @@ function Category() {
   };
 
   useEffect(() => {
-    const abortController = new AbortController();
-
     async function categoryAPI() {
       var response = await fetch(
-        `https://ophim1.com/v1/api/the-loai/${id}?page=${page}`,
-        { signal: abortController.signal }
+        `https://ophim1.com/v1/api/the-loai/${id}?page=${page}`
       );
       setLoading(false);
       var data = await response.json();
       setMovie(data.data.items);
+      console.log(movie);
       setPagination(data.data.params.pagination.pageRanges);
       setLoading(true);
     }
     categoryAPI();
-    return () => {
-      abortController.abort();
-    };
   }, [page, id]);
 
   function handlePageClick(index) {
@@ -56,7 +51,7 @@ function Category() {
                 }}
               >
                 <img
-                  src={`https://img.ophim12.cc/uploads/movies/${movie.thumb_url}`}
+                  src={`https://img.ophim.live/uploads/movies/${movie.thumb_url}`}
                   alt="poster"
                 />
 

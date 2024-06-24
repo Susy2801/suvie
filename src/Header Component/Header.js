@@ -9,12 +9,28 @@ function Header() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [category, setCategory] = useState([]);
+  const [preSearch, setPreSearch] = useState([]);
+  const [preHeight, setPreHeight] = useState(0);
 
   function handleEnter(e) {
     if (e.key === "Enter") {
       navigate(`search/${search}`, { replace: true });
       setSearch("");
     }
+  }
+
+  function updatePreHeight() {
+    setPreHeight("500px");
+  }
+
+  function checkInput() {
+    if (search == "") {
+      offPreHeight();
+    }
+  }
+
+  function offPreHeight() {
+    setPreHeight("0");
   }
 
   useEffect(() => {
@@ -33,6 +49,18 @@ function Header() {
       abortController.abort();
     };
   }, []);
+
+  useEffect(() => {
+    var api = `https://ophim1.com/v1/api/tim-kiem?keyword=${search}`;
+    var searchPre = async () => {
+      var response = await fetch(api);
+      var data = await response.json();
+      setPreSearch(data.data.items);
+      console.log(preSearch);
+    };
+
+    searchPre();
+  }, [search]);
 
   return (
     <header className="header">
@@ -72,7 +100,12 @@ function Header() {
         <input
           placeholder="Tìm kiếm phim"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onBlur={(e) => offPreHeight()}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            updatePreHeight();
+            checkInput();
+          }}
           onKeyDown={(e) => handleEnter(e)}
         />
         <Link to={`search/${search}`}>
@@ -81,6 +114,21 @@ function Header() {
             className="fa-solid fa-magnifying-glass search-icon"
           ></i>
         </Link>
+        <div className="pre__search" style={{ maxHeight: preHeight }}>
+          {preSearch.map((movie, index) => (
+            <Link className="pre__box" id={index} to={`watch/${movie.slug}`}>
+              <img
+                className="pre__img"
+                alt="img"
+                src={`https://img.ophim.live/uploads/movies/${movie.thumb_url}`}
+              />
+              <div className="pre__info--box">
+                <h3 className="pre__name">{movie.name}</h3>
+                <h4 className="pre__origin-name">{movie.origin_name}</h4>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </header>
   );

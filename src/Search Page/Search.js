@@ -46,7 +46,7 @@ function Search() {
                 }}
               >
                 <img
-                  src={`https://img.ophim12.cc/uploads/movies/${movie.thumb_url}`}
+                  src={`https://img.ophim.live/uploads/movies/${movie.thumb_url}`}
                   alt="poster"
                 />
 
